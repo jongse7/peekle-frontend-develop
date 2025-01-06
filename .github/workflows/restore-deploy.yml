@@ -1,0 +1,19 @@
+name: Restore deploy.yml
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  restore-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Restore original deploy.yml
+        run: |
+          git checkout HEAD~1 -- .github/workflows/deploy.yml
+          git commit -m "chore: main과 develop deploy.yml 구분 (#0)"
+          git push
