@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: ['develop']
+    branches: ['main']
 
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
         with:
           source-directory: 'output'
           destination-github-username: jongse7
-          destination-repository-name: peekle-frontend-develop
+          destination-repository-name: peekle-frontend
           user-email: ${{ secrets.EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: main
