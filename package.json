@@ -9,7 +9,7 @@
     "format": "prettier --cache --write \"**/*.{js,jsx,ts,tsx}\"",
     "lint": "eslint --cache --fix \"**/*.{js,jsx,ts,tsx}\"",
     "preview": "vite preview",
-    "postinstall": "husky install && (chmod ug+x .husky/* ?? true)"
+    "postinstall": "husky install && chmod ug+x .husky/* || true"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.62.15",
