@@ -1,20 +1,20 @@
-import { Suspense, useState } from 'react'
+import { Suspense, useState } from "react";
 import {
   QueryCache,
   QueryClient,
   QueryClientProvider,
-  QueryErrorResetBoundary
+  QueryErrorResetBoundary,
 } from "@tanstack/react-query";
 import { APIResponseError } from "endpoint-client";
-import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools'
-import { ErrorBoundary } from 'react-error-boundary'
-import Router from './routes/Router'
-import GlobalStyles from '@/styles/GlobalStyles'
-import '@/styles/fonts.css'
-import '@/styles/designToken.css'
+import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
+import { ErrorBoundary } from "react-error-boundary";
+import Router from "./routes/Router";
+import GlobalStyles from "@/styles/GlobalStyles";
+import "@/styles/fonts.css";
+import "@/styles/designToken.css";
 
 function App() {
-  const [isOpen, setIsOpen] = useState<boolean>(false) // ReactQueryDevtoolsPanel 열고닫기
+  const [isOpen, setIsOpen] = useState<boolean>(false); // ReactQueryDevtoolsPanel 열고 닫기
 
   const queryClient = new QueryClient({
     queryCache: new QueryCache({
@@ -28,7 +28,7 @@ function App() {
 
         // 백그라운드 refetch error 처리 논의 필요
         if (query.state.data !== undefined) {
-          alert(error); 
+          alert(error);
         }
       },
     }),
@@ -42,12 +42,14 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <GlobalStyles/>
+      <GlobalStyles />
       <QueryErrorResetBoundary>
         {({ reset }) => (
           <ErrorBoundary
             onReset={reset}
-            FallbackComponent={({error}) => <div>error fallback component: {error.message}</div>}
+            FallbackComponent={({ error }) => (
+              <div>error fallback component: {error.message}</div>
+            )}
           >
             <Suspense fallback={<div>Loading Component</div>}>
               <Router />
@@ -56,17 +58,16 @@ function App() {
         )}
       </QueryErrorResetBoundary>
       <button
-        onClick={() =>
-          setIsOpen(!isOpen)
-        }>{`${isOpen ? 'Close' : 'Open'} the devtools panel`}</button>
+        onClick={() => setIsOpen(!isOpen)}
+      >{`${isOpen ? "Close" : "Open"} the devtools panel`}</button>
       {isOpen && (
         <ReactQueryDevtoolsPanel
-          style={{ height: '200px' }}
+          style={{ height: "200px" }}
           onClose={() => setIsOpen(false)}
         />
       )}
     </QueryClientProvider>
-  )
+  );
 }
 
-export default App
+export default App;
