@@ -1,37 +1,33 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Layout from "@/layouts/Layout";
-import FontsTestPage from "@/test/FontsTestPage";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Layout from '@/layouts/Layout';
+import { HomePage } from '@/pages';
 
-const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+const ProtectedPage = ({ children }: { children: React.ReactNode }) => {
   return children;
 };
 
 const router = createBrowserRouter(
   [
     {
-      path: "/",
-      element: <Layout />,
+      path: '/',
+      element: (
+        <ProtectedPage>
+          <Layout />
+        </ProtectedPage>
+      ),
       // errorElement: <NotFoundPage />,
       children: [
         {
           index: true,
-          element: (
-            <ProtectedRoute>
-              <></>
-            </ProtectedRoute>
-          ),
+          element: <HomePage />,
         },
         {
-          path: "/auth/signup",
+          path: '/auth/signup',
           // element: <SignUpPage />
         },
         {
-          path: "/auth/signin",
+          path: '/auth/signin',
           // element: <SignInPage />
-        },
-        {
-          path: "/test/fonts",
-          element: <FontsTestPage />,
         },
       ],
     },
