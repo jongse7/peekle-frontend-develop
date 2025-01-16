@@ -1,8 +1,14 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import SearchSVG from '@/assets/images/search.svg?react';
 
-const Wrapper = styled.div`
+export const SearchIcon = styled(SearchSVG)`
+  width: 40px; /* 원하는 크기 설정 */
+  height: 40px;
+`;
+
+export const Wrapper = styled.div`
   padding: 20px;
-  font-family: "Pretendard", sans-serif;
+  font-family: 'Pretendard', sans-serif;
 
   h1 {
     font-weight: 900; /* Black */
@@ -43,17 +49,3 @@ const Wrapper = styled.div`
     font-size: 12px;
   }
 `;
-
-export default function FontsTestPage() {
-  return (
-    <Wrapper>
-      <h1>Pretendard Black (900)</h1>
-      <h2>Pretendard ExtraBold (800)</h2>
-      <h3>Pretendard Bold (700)</h3>
-      <p>Pretendard Regular (400)</p>
-      <span>Pretendard Light (300)</span>
-      <p className="extra-light">Pretendard ExtraLight (200)</p>
-      <p className="thin">Pretendard Thin (100)</p>
-    </Wrapper>
-  );
-}
