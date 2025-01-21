@@ -1,10 +1,12 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import InputComponentsPage from '@/pages/test/InputComponentsPage';
-import CalendarPage from '@/pages/test/CalendarPage';
-import { SearchBarPage } from '@/pages/test/SearchBarPage';
 import Layout from '@/layouts/outlet';
-import EventMapPage from '@/pages/event/EventMapPage';
-import EventPage from '@/pages/event/EventPage';
+import {
+  EventPage,
+  EventMapPage,
+  EventSearchPage,
+  EventScrapPage,
+  EventDetailPage,
+} from '@/pages';
 import CommunityPage from '@/pages/community/page';
 import UserPage from '@/pages/user/page';
 
@@ -33,6 +35,18 @@ const router = createBrowserRouter(
           element: <EventMapPage />,
         },
         {
+          path: '/event/search',
+          element: <EventSearchPage />,
+        },
+        {
+          path: '/event/scrap',
+          element: <EventScrapPage />,
+        },
+        {
+          path: '/event/:id',
+          element: <EventDetailPage />,
+        },
+        {
           path: '/auth/signup',
           // element: <SignUpPage />
         },
@@ -47,18 +61,6 @@ const router = createBrowserRouter(
         {
           path: '/user',
           element: <UserPage />,
-        },
-        {
-          path: '/test/input-components',
-          element: <InputComponentsPage />,
-        },
-        {
-          path: '/test/calendar',
-          element: <CalendarPage />,
-        },
-        {
-          path: '/test/searchbar',
-          element: <SearchBarPage />,
         },
       ],
     },

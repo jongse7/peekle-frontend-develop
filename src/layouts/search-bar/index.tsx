@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
-import TextFields from '@/components/common/text-fields';
+import TextFields from '@/components/common/input/text-fields';
 
 interface SearchBarProps {
   queryKey: string;

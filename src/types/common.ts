@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, SVGAttributes } from 'react';
 import {
   SORT_OPTIONS,
   CATEGORY_OPTIONS,
@@ -66,10 +66,15 @@ export interface TabListProps {
 
 // BottomSheet
 export interface BottomSheetStore {
-  isBottomSheetOpen: boolean;
-  activeTab: string; // BottomSheet에서 쓰이는 탭 (어떤 탭 활성화 할건지)
-  setIsBottomSheetOpen: (issBottomSheetOpen: boolean) => void;
-  setActiveTab: (tab: string) => void;
+  activeBottomSheet: string | null; // 현재 활성화된 BottomSheet (없으면 null)
+  setActiveBottomSheet: (sheet: string | null) => void; // 활성화된 BottomSheet 설정
+  bottomSheetHeight: number | 'auto'; // BottomSheet 높이
+  setBottomSheetHeight: (height: number | 'auto') => void; // BottomSheet 높이 설정
+}
+
+export interface BottomSheetProps {
+  id: string;
+  children: ReactNode;
 }
 
 // Chip
@@ -98,4 +103,17 @@ export interface SelectProps {
   option: SelectOption; // select 종류 === 쿼리 파람 키
   defaultValue: string; // 기본값
   defaultLabel: string; // 기본 라벨
+}
+
+// ToggleHeart
+export interface ToggleHeartProps {
+  size: number;
+  borderColor: string;
+  isActive: boolean;
+  onClick: () => void;
+}
+
+export interface HeartSVGProps extends SVGAttributes<SVGElement> {
+  $size?: number;
+  $borderColor?: string;
 }

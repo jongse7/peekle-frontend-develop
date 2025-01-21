@@ -1,3 +1,4 @@
+// import * as S from './style';
 import { useState } from 'react';
 
 const Loader = () => {

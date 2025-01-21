@@ -1,8 +1,8 @@
 import * as S from './style';
-import { EventCardProps } from '@/types/event';
+import { EventData } from '@/types/event';
 import { formatDateToMonthDay } from '@/utils/dateFormatter';
 
-export const EventCard = (props: EventCardProps) => {
+export const EventCard = (props: EventData) => {
   const { location, price, images, title, startDate, endDate } = props;
 
   return (
@@ -11,9 +11,7 @@ export const EventCard = (props: EventCardProps) => {
         {images.length > 0 ? (
           <S.Image src={images[0]} alt={`${title}-img`} />
         ) : (
-          <S.EmptyImageContainer>
-            <S.DefaultImageIcon />
-          </S.EmptyImageContainer>
+          <S.DefaultImageIcon />
         )}
       </S.ImageContainer>
       <S.Info>
