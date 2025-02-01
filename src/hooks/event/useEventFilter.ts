@@ -90,7 +90,7 @@ const useEventFilter = ({
       const eventScheduleA = a.eventSchedules[0];
       const eventScheduleB = b.eventSchedules[0];
 
-      if (filters.정렬 === 'latest') {
+      if (filters.정렬 === '가까운 날짜순') {
         const startDateDiff =
           new Date(eventScheduleA.startDate).getTime() -
           new Date(eventScheduleB.startDate).getTime();
@@ -102,7 +102,7 @@ const useEventFilter = ({
         return a.title.localeCompare(b.title, 'ko');
       }
 
-      if (filters.정렬 === 'lowest_price') {
+      if (filters.정렬 === '낮은 금액순') {
         const priceDiff = Number(a.price) - Number(b.price);
         if (priceDiff !== 0) return priceDiff;
         const startDateDiff =
@@ -112,7 +112,7 @@ const useEventFilter = ({
         return a.title.localeCompare(b.title, 'ko');
       }
 
-      if (filters.정렬 === 'shortest_distance' && myLocation) {
+      if (filters.정렬 === '가까운 거리순' && myLocation) {
         const distanceA = calculateDistance(
           myLocation.lat(),
           myLocation.lng(),
