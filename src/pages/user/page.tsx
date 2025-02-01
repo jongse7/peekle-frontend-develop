@@ -127,7 +127,7 @@ const UserPage = () => {
     navigate('/user/resign');
   };
   const handleLogout = () => {
-    alert('로그아웃 하시겠어요?', 'warning', '취소', '로그아웃');
+    alert('로그아웃 하시겠어요?', 'logout', '취소', '로그아웃');
   };
   return (
     <Container>
