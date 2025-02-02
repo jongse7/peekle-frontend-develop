@@ -1,5 +1,11 @@
 import * as S from './style';
-import { EventList, Filter, CategoryChips } from '@/components';
+import { Suspense } from 'react';
+import {
+  EventList,
+  EventListSkeleton,
+  Filter,
+  CategoryChips,
+} from '@/components';
 import Header from '@/layouts/header';
 
 const EventPage = () => {
@@ -10,7 +16,9 @@ const EventPage = () => {
         <CategoryChips />
         <Filter />
       </S.HeaderContainer>
-      <EventList />
+      <Suspense fallback={<EventListSkeleton />}>
+        <EventList />
+      </Suspense>
     </S.EventPageContainer>
   );
 };

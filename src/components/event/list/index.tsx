@@ -1,13 +1,18 @@
 import * as S from './style';
 import { useQueryState } from 'nuqs';
 import { useNavigate } from 'react-router-dom';
-import { EventCard, Filter, RoundedButton } from '@/components';
+import {
+  EventCard,
+  EventCardSkeleton,
+  Filter,
+  RoundedButton,
+} from '@/components';
 import { useEventFilter } from '@/hooks';
 import { EventData } from '@/types/event';
 import { ROUTES } from '@/constants/routes';
 import { useMapStore } from '@/stores';
 
-const EventList = ({
+export const EventList = ({
   page = 'index',
 }: {
   page?: 'search' | 'scrap' | 'index';
@@ -74,4 +79,12 @@ const EventList = ({
   );
 };
 
-export default EventList;
+export const EventListSkeleton = () => {
+  return (
+    <S.Container>
+      {Array.from({ length: 10 }).map((_, index) => (
+        <EventCardSkeleton key={index} />
+      ))}
+    </S.Container>
+  );
+};

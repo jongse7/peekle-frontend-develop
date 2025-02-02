@@ -29,7 +29,7 @@ export { default as RoundedButton } from './common/input/rounded-button';
 // event
 export { EventCard, EventCardSkeleton } from './event/card';
 export { default as BottomSheetTabs } from './event/bottom-sheet-tabs';
-export { default as EventList } from './event/list';
+export { EventList, EventListSkeleton } from './event/list';
 export { default as LocationConfirm } from './event/location-confirm';
 export { default as FilePagination } from './event/file-pagenation';
 export { default as ImageSlider } from './event/image-slider';
