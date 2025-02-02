@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { ROUTES } from '@/constants/routes';
 import { Button } from '@/components/common/input/button/index';
 import CompleteSVG from '@/assets/images/auth/complete.svg?react';
 
@@ -39,7 +40,7 @@ const CompleteIcon = styled(CompleteSVG)`
 const CompletePage = () => {
   const navigate = useNavigate();
   const handleStart = () => {
-    navigate('/event');
+    navigate(ROUTES.EVENT);
   };
   return (
     <Container>

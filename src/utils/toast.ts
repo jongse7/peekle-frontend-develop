@@ -2,11 +2,17 @@ import { useToastStore } from '@/stores';
 
 const toast = (message: string) => {
   const store = useToastStore.getState();
+  // 이미 토스트가 표시 중이라면 새로운 요청 무시
   if (store.isOpen) {
-    console.log('이전 토스트 열려있음');
-    store.close(); // 이전 toast 닫고
+    return;
   }
-  store.show(message); // 새 toast 열기
+  store.show(message);
+};
+
+// 토스트를 강제 종료하는 함수
+export const closeToast = () => {
+  const store = useToastStore.getState();
+  store.close();
 };
 
 export default toast;

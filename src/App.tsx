@@ -20,6 +20,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      {/* <MetaTag /> */}
       <GlobalStyles />
       <QueryClientProvider client={queryClient}>
         <QueryErrorResetBoundary>
