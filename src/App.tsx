@@ -16,7 +16,7 @@ import { Alert, Confirm, Toast } from '@/components';
 import Router from '@/routes/Router';
 
 function App() {
-  const [isOpen, setIsOpen] = useState<boolean>(false); // ReactQueryDevtoolsPanel 열고 닫기
+  const [isOpen, setIsOpen] = useState<boolean>(false); // ReactQueryDevtoolsPanel 열고닫기
 
   return (
     <ThemeProvider theme={theme}>
