@@ -6,7 +6,6 @@ import {
   ImageSlider,
   Backward,
   Button,
-  MetaTag,
 } from '@/components';
 import { BOTTOM_SHEET_ID_EVENT_SHARE } from '@/constants/event';
 import {
@@ -105,12 +104,12 @@ const EventDetailPage = () => {
 
   return (
     <>
-      <MetaTag
+      {/* <MetaTag
         title={title}
         description={content?.slice(0, 50)}
         imgSrc={eventImages?.[0]?.imageUrl}
         url={window.location.href}
-      />
+      /> */}
 
       <S.Header>
         <Backward size={'28px'} />
