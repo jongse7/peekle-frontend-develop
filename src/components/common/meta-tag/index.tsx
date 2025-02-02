@@ -13,21 +13,22 @@ const MetaTag = ({
   imgSrc = import.meta.env.VITE_BASE_IMAGE, //디폴트 이미지
   url = window.location.href,
 }: MetaTagProps) => {
+  const firstSentence = description.match(/[^.!?]+[.!?]/)?.[0] ?? description;
   return (
     <Helmet>
       <title>{title}</title>
-      <meta name="description" content={description} />
+      <meta name="description" content={firstSentence} />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       <meta property="og:site_name" content="peekle" />
-      <meta property="og:description" content={description} />
+      <meta property="og:description" content={firstSentence} />
       <meta property="og:image" content={imgSrc} />
       <meta property="og:url" content={url} />
 
       {/* Twitter Card (트위터 공유용) */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:description" content={firstSentence} />
       <meta name="twitter:image" content={imgSrc} />
       <meta name="twitter:url" content={url} />
     </Helmet>
