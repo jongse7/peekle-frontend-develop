@@ -2,7 +2,7 @@
 export { default as DeferredLoader } from './common/deferred-loader';
 export { default as ErrorFallback } from './common/error-fallback';
 export { default as Backward } from './common/backward';
-// export { default as MetaTag } from './common/meta-tag';
+export { default as MetaTag } from './common/meta-tag';
 // navigation
 export { default as Chip } from './common/navigation/chip';
 
