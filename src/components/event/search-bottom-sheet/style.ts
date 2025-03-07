@@ -6,11 +6,21 @@ import RecentSVG from '@/assets/images/icons/recent.svg?react';
 import NoRecentSearchSVG from '@/assets/images/null/noRecentSearch.svg?react';
 import mediaQuery from '@/styles/mediaQuery';
 
+export const Overlay = styled(motion.div)`
+  position: absolute;
+  top: var(--search-header-height);
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  background-color: rgba(255, 255, 255, 0.3);
+`;
+
 export const BottomSheetContainer = styled(motion.div)`
   background-color: ${theme.color.gray[0]};
   position: absolute;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
+  overflow: hidden;
 `;
 
 export const BottomSheetHeader = styled.header`
@@ -20,7 +30,8 @@ export const BottomSheetHeader = styled.header`
 export const BottomSheetContent = styled.div`
   padding: 0 20px;
   margin-top: 12px;
-  overflow-y: auto;
+  height: 100%;
+  overflow-y: scroll;
 `;
 
 export const RecentSearchContainer = styled.section`

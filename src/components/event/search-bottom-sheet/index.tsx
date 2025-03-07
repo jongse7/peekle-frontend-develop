@@ -4,6 +4,7 @@ import {
   AnimatePresence,
   useDragControls,
   useMotionValue,
+  PanInfo,
 } from 'framer-motion';
 import {
   EventList,
@@ -14,11 +15,19 @@ import {
 import { useRecentSearch } from '@/hooks';
 import { useSearchBottomSheetStore, useEventsStore } from '@/stores';
 
-const DRAG_BUFFER = 30;
+const overlayVariants = {
+  opened: { opacity: 1, transition: { duration: 0.2 } },
+  closed: { opacity: 0, transition: { duration: 0.2 } },
+};
+
+const offsetThreshold = 100;
+const deltaThreshold = 5;
+
 const bottomSheetVariants = {
   opened: { top: 'var(--search-header-height)' },
   closed: { top: `calc(100% - var(--search-bottom-sheet-height))` },
 };
+
 const goToMapBtnVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
@@ -37,8 +46,6 @@ const SearchBottomSheet = () => {
     localKey: 'recent-event-search',
   });
 
-  // console.log('recentSearch', recentSearch);
-
   const { events } = useEventsStore();
   const { isSearchBSOpen, setIsSearchBSOpen } = useSearchBottomSheetStore();
 
@@ -48,29 +55,33 @@ const SearchBottomSheet = () => {
 
   const dragControls = useDragControls();
 
-  const handleDragEnd = () => {
-    const y = dragY.get();
-    // console.log('y', y);
-    if (y <= -DRAG_BUFFER) setIsSearchBSOpen(true);
-    else if (y > DRAG_BUFFER) setIsSearchBSOpen(false);
+  const handleDragEnd = (_: PointerEvent, info: PanInfo) => {
+    const isOverOffsetThreshold = Math.abs(info.offset.y) > offsetThreshold;
+    const isOverDeltaThreshold = Math.abs(info.delta.y) > deltaThreshold;
+
+    const isOverThreshold = isOverOffsetThreshold || isOverDeltaThreshold;
+    if (!isOverThreshold) return;
+
+    const newIsOpened = info.offset.y < 0;
+
+    setIsSearchBSOpen(newIsOpened);
   };
 
   const handleGotoMapBtnClick = () => {
     setIsSearchBSOpen(false);
   };
 
-  console.log('events', events);
-
   return (
     <>
       <AnimatePresence initial={false}>
+        <S.Overlay animate={animateState} variants={overlayVariants} />
         <S.BottomSheetContainer
           drag="y"
           dragConstraints={{
             top: 0,
             bottom: 0,
           }}
-          dragElastic={0.5}
+          dragElastic={{ top: 0, bottom: 0.5 }}
           style={{
             y: dragY,
           }}
